@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ProductListItemDto>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Kayıtlı ürün listesi</h2>
+<hr />
+@if (Model == null)
+{
+    <p class="alert alert-info">Kayıtlı ürün bulunmuyor!</p>
+}
+else
+{
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.Name (@item.Rating)</li>
+        }
+    </ul>
+}
