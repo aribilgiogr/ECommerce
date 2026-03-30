@@ -20,7 +20,7 @@ namespace Core.Concretes.DTOs
         public string Address { get; set; } = null!;
         public string City { get; set; } = null!;
         public string District { get; set; } = null!;
-        public string Username { get; set; } = null!;
+        public string UserName { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
         public string ConfirmPassword { get; set; } = null!;

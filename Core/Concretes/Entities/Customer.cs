@@ -9,7 +9,6 @@ namespace Core.Concretes.Entities
         public string Address { get; set; } = null!;
         public string City { get; set; } = null!;
         public string District { get; set; } = null!;
-
         // Navigation Properties
         public virtual ICollection<Cart> ShoppingCarts { get; set; } = [];
         public virtual ICollection<ProductReview> ProductReviews { get; set; } = [];

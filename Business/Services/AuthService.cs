@@ -1,12 +1,8 @@
-﻿using Core.Abstracts.IServices;
+﻿using AutoMapper;
+using Core.Abstracts.IServices;
 using Core.Concretes.DTOs;
 using Core.Concretes.Entities;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utils.Responses;
 
 namespace Business.Services
@@ -15,11 +11,13 @@ namespace Business.Services
     {
         private readonly UserManager<Customer> userManager;
         private readonly SignInManager<Customer> signInManager;
+        private readonly IMapper mapper;
 
-        public AuthService(UserManager<Customer> userManager, SignInManager<Customer> signInManager)
+        public AuthService(UserManager<Customer> userManager, SignInManager<Customer> signInManager, IMapper mapper)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.mapper = mapper;
         }
 
         public async Task<IResult> LoginAsync(LoginDto model)
@@ -67,14 +65,32 @@ namespace Business.Services
             }
         }
 
+        // Kullanıcıyı oturumdan çıkarır
         public async Task LogoutAsync()
         {
+            // Aktif oturumu sonlandırır
             await signInManager.SignOutAsync();
         }
 
-        public Task<IResult> RegisterAsync(RegisterDto model)
+        // Yeni bir müşteri kaydı oluşturur
+        public async Task<IResult> RegisterAsync(RegisterDto model)
         {
-            throw new NotImplementedException();
+            // RegisterDto objesini Customer objesine dönüştürür
+            var customer = mapper.Map<Customer>(model);
+
+            // Yeni müşteriyi veritabanına kaydeder ve şifresi ile birlikte oluşturur
+            var result = await userManager.CreateAsync(customer, model.Password);
+
+            // Kayıt işlemi başarılı ise başarı mesajı döndürür
+            if (result.Succeeded)
+            {
+                return Result.Success();
+            }
+            else
+            {
+                // Kayıt işlemi başarısız ise hata mesajlarını döndürür
+                return Result.Failure(result.Errors.Select(x => x.Description));
+            }
         }
     }
 }

@@ -71,6 +71,7 @@ namespace Business
             services.AddAutoMapper(cfg =>
             {
                 cfg.AddProfile<ShowroomProfiles>();
+                cfg.AddProfile<AuthProfiles>();
             });
 
 
