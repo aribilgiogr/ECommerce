@@ -8,7 +8,8 @@ namespace Business.Profiles
     {
         public AuthProfiles()
         {
-            CreateMap<Customer, RegisterDto>();
+            // RegisterDto -> Customer mapping
+            CreateMap<RegisterDto, Customer>();
         }
     }
 }

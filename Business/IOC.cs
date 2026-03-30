@@ -104,7 +104,7 @@ namespace Business
             /// - IMapper (AutoMapper): DTO dönüştürmeleri
             /// </summary>
             services.AddScoped<IShowroomService, ShowroomService>();
-
+            services.AddScoped<IAuthService, AuthService>();
 
             // ============ DÖNÜŞ ============
             /// <summary>
