@@ -66,11 +66,11 @@ namespace Business.Services
 
         private async Task<Cart> getCart(string customerId)
         {
-            var result = await unitOfWork.CartRepository.FindFirstAsync(c => c.CustomerId == customerId && c.Active);
+            var result = await unitOfWork.CartRepository.FindManyAsync(c => c.CustomerId == customerId && c.Active,"Items.Product");
 
             if (result.IsSuccess)
             {
-                return result.Data;
+                return result.Data.FirstOrDefault();
             }
             else
             {

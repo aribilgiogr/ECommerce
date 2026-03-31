@@ -35,9 +35,9 @@
                         <div class="position-relative overflow-hidden bg-light" style="height: 250px;">
                             @if (!string.IsNullOrEmpty(product.CoverImageUrl))
                             {
-                                <img src="@product.CoverImageUrl" 
-                                     alt="@product.Name" 
-                                     class="img-fluid w-100 h-100" 
+                                <img src="@product.CoverImageUrl"
+                                     alt="@product.Name"
+                                     class="img-fluid w-100 h-100"
                                      style="object-fit: cover;" />
                             }
                             else
@@ -120,10 +120,11 @@
                                 </small>
                             </div>
 
-                            <!-- Buton -->
-                            <a href="@Url.Action("Detail", "Product", new { id = product.Id })" 
-                               class="btn btn-primary btn-sm w-100">
-                                <i class="fas fa-eye me-2"></i>İncele
+                            <a asp-action="addToCart"
+                               asp-controller="shop"
+                               asp-route-pid="@product.Id"
+                               class="btn btn-outline-dark btn-lg w-100">
+                                🛒 Sepete Ekle
                             </a>
                         </div>
 
@@ -134,10 +135,10 @@
                                 box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.15) !important;
                             }
 
-                            .card:hover img {
-                                transform: scale(1.05);
-                                transition: transform 0.3s ease;
-                            }
+                                .card:hover img {
+                                    transform: scale(1.05);
+                                    transition: transform 0.3s ease;
+                                }
                         </style>
                     </div>
                 </div>
