@@ -45,6 +45,12 @@ namespace Data
         private ICartItemRepository? cartItemRepository;
         public ICartItemRepository CartItemRepository => cartItemRepository ??= new CartItemRepository(context);
 
+        private IOrderRepository? orderRepository;
+        public IOrderRepository OrderRepository => orderRepository ??= new OrderRepository(context);
+
+        private IOrderItemRepository? orderItemRepository;
+        public IOrderItemRepository OrderItemRepository => orderItemRepository ??= new OrderItemRepository(context);
+
         public async Task<IResult> CommitAsync()
         {
             try

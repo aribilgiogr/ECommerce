@@ -14,7 +14,8 @@ namespace Core.Abstracts
         IBrandRepository BrandRepository { get; }
         ICartRepository CartRepository { get; }
         ICartItemRepository CartItemRepository { get; }
-
+        IOrderRepository OrderRepository { get; }
+        IOrderItemRepository OrderItemRepository { get; }
         Task<IResult> CommitAsync();
     }
 }

@@ -30,8 +30,12 @@ namespace Business.Services
             if (cartItemResult.IsSuccess)
             {
                 CartItem cartItem = cartItemResult.Data;
-                cartItem.Quantity += quantity;
-                await unitOfWork.CartItemRepository.UpdateAsync(cartItem);
+                int newQuantity = cartItem.Quantity + quantity;
+                if (newQuantity > 0)
+                {
+                    cartItem.Quantity = newQuantity;
+                    await unitOfWork.CartItemRepository.UpdateAsync(cartItem);
+                }
             }
             else
             {
@@ -58,7 +62,8 @@ namespace Business.Services
 
             var cartItemResult = await unitOfWork.CartItemRepository.FindFirstAsync(x => x.CartId == cart.Id && x.ProductId == productId);
 
-            if (cartItemResult.IsSuccess) {
+            if (cartItemResult.IsSuccess)
+            {
                 await unitOfWork.CartItemRepository.DeleteAsync(cartItemResult.Data);
                 await unitOfWork.CommitAsync();
             }
@@ -66,7 +71,7 @@ namespace Business.Services
 
         private async Task<Cart> getCart(string customerId)
         {
-            var result = await unitOfWork.CartRepository.FindManyAsync(c => c.CustomerId == customerId && c.Active,"Items.Product");
+            var result = await unitOfWork.CartRepository.FindManyAsync(c => c.CustomerId == customerId && c.Active, "Items.Product");
 
             if (result.IsSuccess)
             {

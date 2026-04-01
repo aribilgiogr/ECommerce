@@ -316,7 +316,7 @@ namespace Utils.Generics
         {
             var entities = expression == null ? _table : _table.Where(expression);
 
-            if (entities == null)
+            if (entities == null || !entities.Any())
             {
                 return Result<IEnumerable<T>>.Failure(["Entities Not found!"], 404);
             }

@@ -12,5 +12,6 @@ namespace Core.Concretes.Entities
         // Navigation Properties
         public virtual ICollection<Cart> ShoppingCarts { get; set; } = [];
         public virtual ICollection<ProductReview> ProductReviews { get; set; } = [];
+        public virtual ICollection<Order> Orders { get; set; } = [];
     }
 }

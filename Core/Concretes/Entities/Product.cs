@@ -30,6 +30,7 @@ namespace Core.Concretes.Entities
         public virtual ICollection<ProductAttribute> Attributes { get; set; } = [];
         public virtual ICollection<ProductImage> Images { get; set; } = [];
         public virtual ICollection<CartItem> CartItems { get; set; } = [];
+        public virtual ICollection<OrderItem> OrderItems { get; set; } = [];
         public virtual ICollection<ProductReview> Reviews { get; set; } = [];
     }
 }

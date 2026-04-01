@@ -136,9 +136,11 @@
                     </div>
 
                     <div class="d-grid">
-                        <button class="btn btn-primary btn-lg rounded-3 py-3 shadow">
-                            <i class="fa-solid fa-credit-card me-2"></i>Ödemeye Geç
-                        </button>
+                        <form asp-action="create" asp-controller="order" method="post">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-3 py-3 shadow">
+                                <i class="fa-solid fa-credit-card me-2"></i>Ödemeye Geç
+                            </button>
+                        </form>
                     </div>
 
                     <div class="mt-4 text-center">

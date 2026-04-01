@@ -20,5 +20,7 @@ namespace Data
         public virtual DbSet<ProductImage> ProductImages { get; set; }
         public virtual DbSet<ProductReview> ProductReviews { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
     }
 }

@@ -66,4 +66,20 @@ namespace Data.Repositories
         {
         }
     }
+
+    public class OrderRepository : Repository<Order>, IOrderRepository
+    {
+        public OrderRepository(ShopContext db) : base(db)
+        {
+
+        }
+    }
+
+    public class OrderItemRepository : Repository<OrderItem>, IOrderItemRepository
+    {
+        public OrderItemRepository(ShopContext db) : base(db)
+        {
+
+        }
+    }
 }
