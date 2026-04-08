@@ -23,8 +23,7 @@
             @Html.DisplayFor(model => model.Status)
         </dd>
     </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <form asp-action="checkout" asp-controller="order" asp-route-id="@Model.Id" method="post">
+        <button type="submit" class="btn btn-outline-dark btn-sm">Siparişi Onayla</button>
+    </form>
 </div>

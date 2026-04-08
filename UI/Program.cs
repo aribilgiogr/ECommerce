@@ -7,6 +7,15 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddCustomServices(builder.Configuration);
 
+builder.Services.AddHttpClient("payment", cfg =>
+{
+    var paymentUrl = builder.Configuration["BaseUrls:payment"];
+    if (!string.IsNullOrEmpty(paymentUrl))
+    {
+        cfg.BaseAddress = new Uri(paymentUrl);
+    }
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

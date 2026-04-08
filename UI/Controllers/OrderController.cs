@@ -13,11 +13,12 @@ namespace UI.Controllers
     {
         private readonly IOrderService service;
         private readonly UserManager<Customer> userManager;
-
-        public OrderController(IOrderService service, UserManager<Customer> userManager)
+        private readonly HttpClient client;
+        public OrderController(IOrderService service, UserManager<Customer> userManager, IHttpClientFactory factory)
         {
             this.service = service;
             this.userManager = userManager;
+            client = factory.CreateClient("payment");
         }
 
         public async Task<IActionResult> Index(int? id)
@@ -53,6 +54,13 @@ namespace UI.Controllers
         public async Task<IActionResult> ChangeStatus(int id, int status)
         {
             await service.ChangeOrderStatusAsync(id, (OrderStatus)status);
+            return RedirectToAction("index", new { id });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CheckOut(int id)
+        {
+            await service.CheckOutAsync(id, client);
             return RedirectToAction("index", new { id });
         }
     }
